@@ -45,7 +45,7 @@ app.get('/PrintOverflow/profile/', function (req, res) {
 
     }
   })
-  res.render('profile', { pages: page, water: 'billion liters' });
+  res.render('profile', { pages: page, water: page*20, co: page*0.06, tree: 0.14*0.2*page});
 
 })
 
@@ -60,15 +60,16 @@ function print() {
   users.forEach((v) => {
     console.log("vvvv",v);
 
-    //send alert
-    if (v.pages > 500) {
-      console.log("over 500:",v);
+    // send alert
+    if (v.pages > avg) {
+      console.log("over average:",v);
       sendEmail(v);
     }
 
-    //send monthly report
+    //send monthly report (for demo put now)
     var date = new Date(2019,10,23,11,57,0);
-    schedule.scheduleJob(date, () => {
+    schedule.scheduleJob(Date.now(), () => {
+      console.log("date now works");
       sendEmailwithTemp('report',v);
     })
   })
@@ -88,7 +89,9 @@ sqlcon.query("SELECT name,netid,pages,ROUND(PERCENT_RANK() OVER (ORDER BY pages)
     // console.log("all:", result);
     users = Object.values(JSON.parse(JSON.stringify(result)));
     console.log("users: ",users);
-    // print();
+    print();
+    // console.log("HELLOHELLO",users[11]);
+    // sendEmailwithTemp('report',users[11])
 
 });
 
