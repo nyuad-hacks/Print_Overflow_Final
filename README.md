@@ -7,6 +7,8 @@ NYUAD is the only NYU campus with free printing for all its community members. U
 
 We believe everyone is responsible to be environmentally friendly and sustainable. Hence, we aim to spread awareness of paper consumption issues on campus by trusting the humanity, believing in the conscience of the community members, and providing a good motivation for them.
 
+Relevant article on Gazelle can be found at: https://www.thegazelle.org/issue/165/features/printing-to-cap-or-not-to-cap?fbclid=IwAR0AMHBIJOnxd18Eq6CUnb7J2yNkCkXh28YJttrVmIlB9sI0Pbjd3pMhZjw
+
 ## Technical Development
 We used NodeJS to create a server for webpage and sending email notifications. Email alerts are sent to the individual on the database when their paper consumption exceeds the pre-set threshold. All members also receive monthly printing activity report with the number of pages printed and their percentile.
 
