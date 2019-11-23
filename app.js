@@ -30,6 +30,45 @@ var sendEmail = require('./sendmailmodule.js');
 var sendEmailwithTemp = require('./sendmailwithtemp.js');
 var sqlcon = require('./createMysql.js');
 
+var express = require('express');
+var mysql = require('mysql');
+var schedule = require('node-schedule');
+
+
+var sendEmail = require('./sendmailmodule.js');
+var sendEmailwithTemp = require('./sendmailwithtemp.js');
+var sqlcon = require('./createMysql.js');
+var app=express();
+app.set('views', './views');
+app.set('view engine', 'pug');
+
+
+
+
+port=8888;
+app.use(express.static(__dirname));
+app.get('/', function (req, res) {
+  res.render('index', { pages: '1000', water: 'Millions of' })
+})
+app.get('/PrintOverflow' , function (req, res) {
+  res.render('index', { pages: '09999999', water: 'billion liters' })
+})
+app.get('/PrintOverflow/profile/', function (req, res) {
+  var page=0;
+  users.forEach((v) => {
+    console.log(req.id);
+    if (req.query.id==v["name"]){
+      page=v['pages'];
+    
+    }
+  }) 
+  res.render('profile', { pages: page, water: 'billion liters' });
+  
+})
+
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
 var users=[];
 var avg;
 
