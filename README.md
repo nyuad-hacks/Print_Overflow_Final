@@ -16,16 +16,36 @@ For the sake of demonstration, we have created a MySQL query for database. We ar
 
 ## Demonstration Snapshots
 This is an example of the email alert for exceeding the threshold.
-![email alert](./demo/alert)
+![email alert](./demo/alert.png)
 
 This is an example of the monthly report everyone receives.
-![monthly report](./demo/monthlyreport)
+![monthly report](./demo/monthlyreport.png)
 
 This is a screenshot of raw homepage.
-![home](./demo/home)
+![home](./demo/home.png)
 
 This is a screenshot of raw profile page tailored for each individual.
-![profile](./demo/profile)
+![profile](./demo/profile.png)
+
+## How to Run
+You need to have following npm packages to run this app:
+```
+http
+url
+events
+formidable
+nodemailer
+express
+mysql
+node-schedule
+email-templates@2.x
+```
+
+After installing all necessary packages, run:
+```
+cd Print_Overflow_Final
+node app.js
+```
 
 ## Future Work
 User interface will be the first and foremost feature to be improved. We aim to motivate people's conscience and it can only be successfully achieved when proper input has been fed. We define 'proper input' as visually-appealing, attention-provoking, inspirational, and interesting. We plan to add visual dynamics, such as graphs, charts, and images. Monthly reports will also include more dynamic features.
