@@ -1,20 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
-
-@yeojeaaaaanie
-1
-01nyuad-hacks/PrintOverflow
- Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights
-PrintOverflow/app.js
-@yeojeaaaaanie yeojeaaaaanie update monthly report template and combine index.js to app.js
-94a4df6 1 hour ago
-61 lines (48 sloc)  1.53 KB
-
 var http = require('http');
 var url = require('url');
 var fs = require('fs'); //file system
@@ -59,11 +42,11 @@ app.get('/PrintOverflow/profile/', function (req, res) {
     console.log(req.id);
     if (req.query.id==v["name"]){
       page=v['pages'];
-    
+
     }
-  }) 
+  })
   res.render('profile', { pages: page, water: 'billion liters' });
-  
+
 })
 
 
