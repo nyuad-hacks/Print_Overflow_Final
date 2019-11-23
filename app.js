@@ -1,3 +1,20 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+
+@yeojeaaaaanie
+1
+01nyuad-hacks/PrintOverflow
+ Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights
+PrintOverflow/app.js
+@yeojeaaaaanie yeojeaaaaanie update monthly report template and combine index.js to app.js
+94a4df6 1 hour ago
+61 lines (48 sloc)  1.53 KB
+
 var http = require('http');
 var url = require('url');
 var fs = require('fs'); //file system
@@ -14,6 +31,7 @@ var sendEmailwithTemp = require('./sendmailwithtemp.js');
 var sqlcon = require('./createMysql.js');
 
 var users=[];
+var avg;
 
 function print() {
 
@@ -36,21 +54,25 @@ function print() {
 }
 
 
-////// CONNECT TO MYSQL //////
+////// MYSQL //////
 
 sqlcon.query("USE mydb", function (err, result) {
   if (err) throw err;
   console.log("sqlcon connected");
 });
 
-sqlcon.query("SELECT name,netid,pages FROM mytable", function (err, result, fields) {
+sqlcon.query("SELECT name,netid,pages,ROUND(PERCENT_RANK() OVER (ORDER BY pages),2) percentile_rank FROM mytable", function (err, result, fields) {
     if (err) throw err;
     // console.log("all:", result);
     users = Object.values(JSON.parse(JSON.stringify(result)));
     console.log("users: ",users);
-    // print();
+    print();
 
-    console.log(users[1]);
-    sendEmailwithTemp('report',users[1]);
+});
 
-  });
+//calculating average
+sqlcon.query("SELECT AVG(pages) AS avg FROM mytable", function(err, result){
+    if (err) throw err;
+    var temp = Object.values(JSON.parse(JSON.stringify(result)));
+    avg = temp[0].avg;
+});
